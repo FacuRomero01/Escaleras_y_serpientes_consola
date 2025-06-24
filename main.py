@@ -8,7 +8,7 @@ tablero = [
         1,  0,  0,  2,  0,  0,  0,  1,  0,  0,
         0
 ]
-posicion = 29
+posicion = 15
 puntaje = 0
 
 def aplica_escaleras(posicion) -> int:
@@ -21,7 +21,7 @@ def aplica_escaleras(posicion) -> int:
     
     return res
 
-def aplica_serpientes(posicion):
+def aplica_serpientes(posicion) -> int:
     salto = tablero[posicion]
     if salto > 0:
         print(f"¡Serpiente! Retrocedes {salto} casillas.")

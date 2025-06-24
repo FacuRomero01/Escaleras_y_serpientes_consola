@@ -26,6 +26,7 @@ def hacer_pregunta(preguntas) -> bool:
 
     
     preguntas.remove(preg_selec)
+    
     return res
     
     
