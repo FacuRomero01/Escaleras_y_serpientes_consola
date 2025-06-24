@@ -1,32 +1,36 @@
-
 import random
+from preguntas import preguntas
 
-def hacer_pregunta(preguntas) -> bool:
-    
+def selecciona_pregunta(preguntas:list) -> dict:
     preg_selec = random.choice(preguntas)
+    return preg_selec
 
-    print(f"\n{preg_selec['pregunta']}")
-    opciones = {
-        "a": preg_selec["respuesta_a"],
-        "b": preg_selec["respuesta_b"],
-        "c": preg_selec["respuesta_c"],
-    }
-    
-    for letra, texto in opciones.items():
-        print(f"{letra}. {texto}")
 
+def muestra_pregunta(pregunta:dict) -> list:
+    print(f"\n{pregunta["pregunta"]}")
+    print(f"a. {pregunta["respuesta_a"]}")
+    print(f"b. {pregunta["respuesta_b"]}")
+    print(f"c. {pregunta["respuesta_c"]}")
+
+
+def ingresa_opcion()-> chr:
+    respuesta = input(f"Elige una opción (a, b, c): ")
+    return respuesta
+
+def valida_respuesta(pregunta:dict) -> any:
     flag_opcion = True
     while flag_opcion:
-        respuesta = input(f"Elige una opción (a, b, c): ")
-        if respuesta in opciones:
-            res = respuesta == preg_selec["respuesta_correcta"]
+        respuesta = ingresa_opcion()
+        if respuesta == "a" or respuesta == "b" or respuesta == "c":
+            res = respuesta == pregunta["respuesta_correcta"]
             flag_opcion = False
         else:
             print("Opción inválida. Intenta de nuevo.")
-
-    
-    preguntas.remove(preg_selec)
-    
     return res
-    
-    
+
+def pregunta() -> bool:
+    preg_selec = selecciona_pregunta(preguntas)
+    muestra_pregunta(preg_selec)
+    res = valida_respuesta(preg_selec)
+    preguntas.remove(preg_selec)
+    return res
